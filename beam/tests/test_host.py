@@ -54,7 +54,7 @@ class TestHost(unittest.TestCase):
 
     def test_from_response_malformed(self):
         with self.assertRaises(ValueError):
-            Host.from_response('bad_xml_here', self._NAME, self._KEY,
+            Host.from_response('><', self._NAME, self._KEY,
                                self._HASH)
 
     def test_from_response_api_failure(self):

@@ -3,7 +3,7 @@ from __future__ import unicode_literals, division
 
 import six
 from xml.etree import cElementTree
-from xml.etree.ElementTree import ParseError
+from xml.etree.cElementTree import ParseError
 
 from beam.resource import Resource
 
