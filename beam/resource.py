@@ -45,8 +45,7 @@ class Resource(object):
             if len(fragments) != 4:
                 raise ValueError('Incorrect number of fragments in response')
             return Resource(fragments[1], fragments[2])
-        except TypeError:
-            # in Python 2, could also be byte count too big for int
+        except ValueError:
             raise ValueError('Invalid byte count in response')
 
     def __eq__(self, other):
