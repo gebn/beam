@@ -26,6 +26,40 @@ class Resource(object):
             used_bytes / self.total_bytes
         self.free_percentage = 1 - self.used_percentage
 
+    @staticmethod
+    def from_response(value):
+        """
+        Parse a comma-separated string returned by SolusVM's API into a
+        resource object.
+
+        :param value: The value string to parse.
+        :return: A resource object representing the same string.
+        :raises ValueError: If the value is malformed.
+        """
+
+        if not value:
+            raise ValueError('Cannot construct resource from empty response')
+
+        try:
+            fragments = [int(chunk) for chunk in value.split(',')]
+            if len(fragments) != 4:
+                raise ValueError('Incorrect number of fragments in response')
+            return Resource(fragments[1], fragments[2])
+        except TypeError:
+            # in Python 2, could also be byte count too big for int
+            raise ValueError('Invalid byte count in response')
+
+    def __eq__(self, other):
+        """
+        Check whether this resource is identical to another.
+
+        :param other: The object to compare to this one.
+        :return: True if the objects are identical, false otherwise.
+        """
+        return isinstance(other, self.__class__) and \
+            other.used_bytes == self.used_bytes and \
+            other.free_bytes == self.free_bytes
+
     def __str__(self):
         """
         Generate a human-readable string representation of this resource's

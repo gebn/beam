@@ -30,6 +30,40 @@ class TestResource(unittest.TestCase):
     def test_zero_total_bytes(self):
         self.assertEqual(Resource(0, 0).used_percentage, 1)
 
+    def test_from_response_none(self):
+        with self.assertRaises(ValueError):
+            Resource.from_response(None)
+
+    def test_from_response_too_many_fragments(self):
+        with self.assertRaises(ValueError):
+            Resource.from_response('12884901888,6155997184,6728904704,48,22')
+
+    def test_from_response_too_few_fragments(self):
+        with self.assertRaises(ValueError):
+            Resource.from_response('12884901888,6155997184,6728904704')
+
+    def test_from_response_float(self):
+        with self.assertRaises(ValueError):
+            Resource.from_response('12884901.888,6155997184,6728904704,48')
+
+    def test_from_response_string(self):
+        with self.assertRaises(ValueError):
+            Resource.from_response('12884901888,surprise,6728904704,48')
+
+    def test_from_response(self):
+        self.assertEqual(Resource(6155997184, 6728904704),
+                         Resource.from_response('12884901888,6155997184,'
+                                                '6728904704,48'))
+
+    def test_eq_false_used(self):
+        self.assertNotEqual(Resource(100, 50), Resource(50, 50))
+
+    def test_eq_false_free(self):
+        self.assertNotEqual(Resource(100, 50), Resource(100, 100))
+
+    def test_eq_true(self):
+        self.assertEqual(Resource(100, 50), Resource(100, 50))
+
     def test_str(self):
         resource = Resource(6155997184, 6728904704)
         self.assertEqual(str(resource),
