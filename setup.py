@@ -28,6 +28,13 @@ setup(
     author='George Brighton',
     author_email='oss@gebn.co.uk',
     packages=find_packages(),
+    install_requires=[
+        'six>=1.9.0'
+    ],
+    test_suite='nose.collector',
+    tests_require=[
+        'nose'
+    ],
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Console',
