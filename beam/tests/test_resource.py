@@ -55,6 +55,9 @@ class TestResource(unittest.TestCase):
                          Resource.from_response('12884901888,6155997184,'
                                                 '6728904704,48'))
 
+    def test_eq_false_class(self):
+        self.assertNotEqual(22, Resource(100, 50))
+
     def test_eq_false_used(self):
         self.assertNotEqual(Resource(100, 50), Resource(50, 50))
 
