@@ -5,7 +5,3 @@ from __future__ import unicode_literals
 #      so dependencies are not necessarily installed.
 
 __version__ = '0.0.1'
-
-
-def host(identifier):
-    pass
