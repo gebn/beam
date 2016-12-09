@@ -18,11 +18,3 @@ def _read_file(name, encoding='utf-8'):
 
 
 __version__ = _read_file(path.join(path.dirname(__file__), 'VERSION')).strip()
-
-
-def _details_from_identifier(identifier):
-    pass
-
-
-def vps(identifier):
-    name, key, hash_ = _details_from_identifier(identifier)
