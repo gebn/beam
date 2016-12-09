@@ -3,8 +3,6 @@ from __future__ import unicode_literals
 from setuptools import setup, find_packages
 import codecs
 
-import beam
-
 
 def _read_file(name, encoding='utf-8'):
     """
@@ -20,7 +18,7 @@ def _read_file(name, encoding='utf-8'):
 
 setup(
     name='beam',
-    version=beam.__version__,
+    version=_read_file('beam/VERSION'),
     description='A lightweight Python wrapper for the SolusVM client API.',
     long_description=_read_file('README.rst'),
     license='MIT',
