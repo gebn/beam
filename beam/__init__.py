@@ -4,6 +4,8 @@ from os import path
 
 import codecs
 
+from beam.config import Config
+
 
 def _read_file(name, encoding='utf-8'):
     """
@@ -18,3 +20,5 @@ def _read_file(name, encoding='utf-8'):
 
 
 __version__ = _read_file(path.join(path.dirname(__file__), 'VERSION')).strip()
+
+_config = Config.resolve()
