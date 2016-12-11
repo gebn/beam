@@ -4,3 +4,4 @@ clean:
 	rm -rf beam.egg-info
 	rm -rf dist
 	rm -rf .eggs
+	rm -rf cover .coverage
