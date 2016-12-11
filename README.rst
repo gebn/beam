@@ -26,14 +26,6 @@ Demo
 
     import beam
 
-    # boot a specific host
-    host = beam.host('nyc-1')  # name, key or hash
-    if not host.is_online:
-        host.boot()
-
-    # boot all offline hosts
-    [host.boot() for host in beam.hosts() if not host.is_online]
-
     # get a list of hosts using above 90% of their memory
     hosts = [host for host in beam.hosts()
              if host.memory.used_percentage > .9]
