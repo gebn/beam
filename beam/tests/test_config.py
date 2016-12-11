@@ -163,15 +163,15 @@ class TestConfig(unittest.TestCase):
             config.find_host(self._HOST_A_NAME).vendor,
             self._HOST_B_VENDOR)
 
-    @unittest.skip('Not implemented')
-    def test_resolve_in_pwd(self, mock_os, mock_path):
-        # TODO implement
-        pass
-
-    @unittest.skip('Not implemented')
-    def test_resolve_in_home(self):
-        # TODO implement
-        pass
+    # @unittest.skip('Not implemented')
+    # def test_resolve_in_pwd(self, mock_os, mock_path):
+    #     # TODO implement
+    #     pass
+    #
+    # @unittest.skip('Not implemented')
+    # def test_resolve_in_home(self):
+    #     # TODO implement
+    #     pass
 
     @mock.patch('beam.config.os.path')
     def test_resolve_fail(self, mock_path):
