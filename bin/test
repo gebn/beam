@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Runs the test suite and generates a coverage report
+
+nosetests --with-coverage --cover-html --cover-package=beam
