@@ -21,6 +21,15 @@ class Vendor(object):
         self.name = name
         self.endpoint = endpoint
 
+    def __hash__(self):
+        """
+        Retrieve a hash value for this object.
+
+        :return: This object's hash. Identical objects will have an identical
+                 hash.
+        """
+        return hash(self.name)
+
     def __eq__(self, other):
         """
         Test whether this vendor is identical to another.
