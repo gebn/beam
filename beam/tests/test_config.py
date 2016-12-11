@@ -119,41 +119,41 @@ class TestConfig(unittest.TestCase):
             Config.from_ini(_MALFORMED_INI)
 
     def test_from_ini_missing_vendors(self):
-        with self.assertRaisesRegexp(ValueError, 'special:vendors section'):
+        with six.assertRaisesRegex(self, ValueError, 'special:vendors section'):
             Config.from_ini(_MISSING_VENDORS_INI)
 
     def test_from_ini_empty_vendors(self):
-        with self.assertRaisesRegexp(ValueError, 'At least one'):
+        with six.assertRaisesRegex(self, ValueError, 'At least one'):
             Config.from_ini(_EMPTY_VENDORS_INI)
 
     def test_from_ini_default_vendor_invalid(self):
-        with self.assertRaisesRegexp(ValueError,
-                                     'specified does not correspond'):
+        with six.assertRaisesRegex(self, ValueError,
+                                   'specified does not correspond'):
             Config.from_ini(_DEFAULT_VENDOR_INVALID_INI)
 
     def test_from_ini_default_vendor_undefined(self):
-        with self.assertRaisesRegexp(ValueError, 'At least one'):
+        with six.assertRaisesRegex(self, ValueError, 'At least one'):
             Config.from_ini(_DEFAULT_VENDOR_UNDEFINED_INI)
 
     def test_from_ini_default_vendor_unspecified(self):
-        with self.assertRaisesRegexp(ValueError, 'when more than one is'):
+        with six.assertRaisesRegex(self, ValueError, 'when more than one is'):
             Config.from_ini(_DEFAULT_VENDOR_UNSPECIFIED_INI)
 
     def test_from_ini_missing_hosts(self):
-        with self.assertRaisesRegexp(ValueError, 'at least one'):
+        with six.assertRaisesRegex(self, ValueError, 'at least one'):
             Config.from_ini(_MISSING_HOSTS_INI)
 
     def test_from_ini_missing_host_key(self):
-        with self.assertRaisesRegexp(ValueError, 'key'):
+        with six.assertRaisesRegex(self, ValueError, 'key'):
             Config.from_ini(_MISSING_HOST_KEY_INI)
 
     def test_from_ini_missing_host_hash(self):
-        with self.assertRaisesRegexp(ValueError, 'hash'):
+        with six.assertRaisesRegex(self, ValueError, 'hash'):
             Config.from_ini(_MISSING_HOST_HASH_INI)
 
     def test_from_ini_host_vendor_undefined(self):
-        with self.assertRaisesRegexp(ValueError,
-                                     'Undefined vendor .+ for host'):
+        with six.assertRaisesRegex(self, ValueError,
+                                   'Undefined vendor .+ for host'):
             Config.from_ini(_HOST_VENDOR_UNDEFINED_INI)
 
     @unittest.skip('Not implemented')
