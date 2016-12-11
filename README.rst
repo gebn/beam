@@ -79,6 +79,7 @@ Roadmap
 -------
 
 -  Implement ``.boot()``, ``.reboot()`` and ``.shutdown()`` for hosts.
+-  Generate documentation.
 
 Etymology
 ---------
