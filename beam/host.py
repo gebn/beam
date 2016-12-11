@@ -55,8 +55,6 @@ class HostIdentity(object):
         :param other: The object to compare to this one.
         :return: True if the objects are identical, false otherwise.
         """
-        print(other.hash)
-        print(self.hash)
         # could use key xor hash here
         return isinstance(other, self.__class__) and \
             other.hash == self.hash
