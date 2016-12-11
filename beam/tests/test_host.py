@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 import unittest
+import responses
 
 from beam.resource import Resource
 from beam.host import Host, HostIdentity
@@ -82,9 +83,32 @@ class TestHost(unittest.TestCase):
         return Host(identity, fqdn, primary_ip, is_online, memory, storage,
                     bandwidth, ip_addresses)
 
+    @staticmethod
+    def add_response(verb=responses.GET,
+                     url=_VENDOR_ENDPOINT + '/api/client/command.php',
+                     body=_XML_VALID,
+                     status=200):
+        responses.add(verb, url, body, status=status)
+
+    @responses.activate
+    def test_request_from_identity_denied(self):
+        self.add_response(status=403)
+        with self.assertRaises(RuntimeError):
+            Host.request_from_identity(self.IDENTITY)
+
+    @responses.activate
+    def test_request_from_identity(self):
+        responses.add(
+            responses.GET,
+            self._VENDOR_ENDPOINT + '/api/client/command.php',
+            status=200,
+            body=self._XML_VALID)
+        self.assertEqual(Host.request_from_identity(self.IDENTITY),
+                         self.host)
+
     def test_is_offline_false(self):
         self.assertFalse(self.host.is_offline)
-    
+
     def test_is_offline_true(self):
         self.assertTrue(self._make_host(is_online=False).is_offline)
 

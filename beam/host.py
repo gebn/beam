@@ -2,6 +2,7 @@
 from __future__ import unicode_literals, division
 
 import six
+import requests
 from xml.etree import cElementTree
 from xml.etree.cElementTree import ParseError
 
@@ -77,6 +78,9 @@ class Host(HostIdentity):
     Represents a host with all its metadata.
     """
 
+    # the relative path to the metadata service
+    _METADATA_ENDPOINT = '/api/client/command.php'
+
     @property
     def is_offline(self):
         """
@@ -109,6 +113,32 @@ class Host(HostIdentity):
         self.storage = storage
         self.bandwidth = bandwidth
         self.ip_addresses = ip_addresses
+
+    @classmethod
+    def request_from_identity(cls, identity):
+        """
+        Retrieve information about a host.
+
+        :param identity: The host's identification details.
+        :return: The retrieved host object.
+        :raises RuntimeError: If the API request fails.
+        """
+        params = identity.request_params
+        params.update({
+            'action': 'info',
+            'ipaddr': 'true',
+            'hdd': 'true',
+            'mem': 'true',
+            'bw': 'true',
+            'status': 'true'
+        })
+
+        response = requests.get(
+            identity.vendor.endpoint + cls._METADATA_ENDPOINT, params=params)
+        if response.status_code != requests.codes.ok:
+            raise RuntimeError(
+                'Unable to retrieve host: {0}'.format(response.text))
+        return cls.from_response(response.text, identity)
 
     @classmethod
     def from_response(cls, body, identity):

@@ -5,6 +5,7 @@ from os import path
 import codecs
 
 from beam.config import Config
+from beam.host import Host
 
 
 def _read_file(name, encoding='utf-8'):
@@ -22,3 +23,24 @@ def _read_file(name, encoding='utf-8'):
 __version__ = _read_file(path.join(path.dirname(__file__), 'VERSION')).strip()
 
 _config = Config.resolve()
+
+
+def hosts():
+    """
+    Retrieve information about all hosts.
+    N.B. This operation can take some time!
+
+    :return: Metadata about every host in the inventory.
+    """
+    return [host(identifier) for identifier in _config.hosts]
+
+
+def host(identifier):
+    """
+    Retrieve information about a host.
+
+    :param identifier: The host's name, key or hash.
+    :return: The matching host.
+    """
+    identity = _config.find_host(identifier)
+    return Host.request_from_identity(identity)

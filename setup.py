@@ -27,12 +27,14 @@ setup(
     author_email='oss@gebn.co.uk',
     packages=find_packages(),
     install_requires=[
-        'six>=1.9.0'
+        'six>=1.9.0',
+        'requests'
     ],
     test_suite='nose.collector',
     tests_require=[
         'nose',
-        'mock'
+        'mock',
+        'responses'
     ],
     classifiers=[
         'Development Status :: 4 - Beta',
