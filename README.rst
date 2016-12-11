@@ -16,8 +16,8 @@ A lightweight Python wrapper for the SolusVM client API.
 Features
 --------
 
- - Query a host's memory, bandwidth, IP addresses and storage usage.
- - Configurable to work with any SolusVM provider.
+-  Query a host's memory, bandwidth, IP addresses and storage usage.
+-  Configurable to work with any SolusVM provider.
 
 Demo
 ----
@@ -45,8 +45,8 @@ Demo
 Setup
 -----
 
- 1. Run ``pip install beam`` to download the module.
- 2. Create your ``.beam.ini`` inventory file.
+1. Run ``pip install beam`` to download the module.
+2. Create your ``.beam.ini`` inventory file.
 
 Inventory
 ~~~~~~~~~
@@ -86,7 +86,7 @@ one.
 Roadmap
 -------
 
- - Implement ``.boot()``, ``.reboot()`` and ``.shutdown()`` for hosts.
+-  Implement ``.boot()``, ``.reboot()`` and ``.shutdown()`` for hosts.
 
 Etymology
 ---------
