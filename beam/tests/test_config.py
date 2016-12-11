@@ -21,6 +21,7 @@ def _config_path(name):
 # valid examples
 _VALID_INI = _config_path('valid.ini')
 _IMPLICIT_DEFAULT_VENDOR_INI = _config_path('implicit_default_vendor.ini')
+_EXPLICIT_VENDOR_INI = _config_path('explicit_vendor.ini')
 
 # invalid examples
 _EMPTY_INI = _config_path('empty.ini')
@@ -155,6 +156,12 @@ class TestConfig(unittest.TestCase):
         with six.assertRaisesRegex(self, ValueError,
                                    'Undefined vendor .+ for host'):
             Config.from_ini(_HOST_VENDOR_UNDEFINED_INI)
+
+    def test_from_ini_explicit_vendor(self):
+        config = Config.from_ini(_EXPLICIT_VENDOR_INI)
+        self.assertEqual(
+            config.find_host(self._HOST_A_NAME).vendor,
+            self._HOST_B_VENDOR)
 
     @unittest.skip('Not implemented')
     def test_resolve_in_pwd(self, mock_os, mock_path):
