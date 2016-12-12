@@ -2,10 +2,10 @@ sudo: false
 cache: pip
 language: python
 python:
- - "2.7"
- - "3.3"
- - "3.4"
- - "3.5"
+ - '2.7'
+ - '3.3'
+ - '3.4'
+ - '3.5'
 script:
  - pip install coverage
  - coverage run setup.py test
