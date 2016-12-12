@@ -16,7 +16,7 @@ class Vendor(object):
 
         :param name: The name of the vendor, e.g. "RamNode".
         :param endpoint: The hostname of the SolusVM control panel, with
-                         with protocol
+                         protocol.
         """
         self.name = name
         self.endpoint = endpoint
