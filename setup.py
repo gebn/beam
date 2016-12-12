@@ -26,6 +26,7 @@ setup(
     author='George Brighton',
     author_email='oss@gebn.co.uk',
     packages=find_packages(),
+    include_package_data=True,
     install_requires=[
         'six>=1.9.0',
         'requests'
