@@ -77,7 +77,7 @@ The CLI client can be used to find information about a single host.
     $ beam --help
     usage: beam [-h] [-V] host attributes [attributes ...]
 
-    A lightweight Python wrapper for the SolusVM client API.
+    A lightweight wrapper for the SolusVM client API.
 
     positional arguments:
       host           the identifier of the host whose information to retrieve

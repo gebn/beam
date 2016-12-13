@@ -19,8 +19,8 @@ def _print_error(msg):
 
 def _parse_args():
     parser = argparse.ArgumentParser(prog='beam',
-                                     description='A lightweight Python wrapper '
-                                                 'for the SolusVM client API.')
+                                     description='A lightweight wrapper for '
+                                                 'the SolusVM client API.')
     parser.add_argument('-V', '--version',
                         action='version',
                         version='%(prog)s ' + beam.__version__)
