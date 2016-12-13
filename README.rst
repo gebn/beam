@@ -33,7 +33,7 @@ The inventory file holds information about your hosting provider(s) and host(s),
 so beam knows how to contact the relevant API endpoints and what credentials to
 use. Here's a sample file:
 
-..
+.. code::
 
    [special:vendors]
    ramnode = https://vpscp.ramnode.com
@@ -72,7 +72,7 @@ CLI
 
 The CLI client can be used to find information about a single host.
 
-..
+.. code::
 
     $ beam --help
     usage: beam [-h] [-V] host attributes [attributes ...]
