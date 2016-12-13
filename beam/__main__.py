@@ -27,28 +27,34 @@ def _parse_args():
     parser.add_argument('host',
                         help='the identifier of the host whose information to '
                              'retrieve')
-    parser.add_argument('attribute',
-                        nargs='?',
-                        help='the attribute of the host to retrieve')
+    parser.add_argument('attributes',
+                        nargs='+',
+                        help='one or more attributes of the host to retrieve')
     return parser.parse_args()
+
+
+def _get_attribute(obj, attribute):
+    return functools.reduce(getattr, attribute.split('.'), obj)
 
 
 def main():
     args = _parse_args()
     try:
         host = beam.host(args.host)
-        if not args.attribute:
+        if not args.attributes:
             print(host)
             return 0
 
-        print(functools.reduce(getattr, args.attribute.split('.'), host))
+        for attribute in args.attributes:
+            try:
+                print(_get_attribute(host, attribute))
+            except AttributeError:
+                # invalid; just print a blank line
+                print()
         return 0
     except ValueError:
         _print_error('Host {0} not defined'.format(args.host))
         return 1
-    except AttributeError:
-        _print_error('No such attribute {0}'.format(args.attribute))
-        return 2
 
 
 if __name__ == '__main__':
