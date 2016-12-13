@@ -19,7 +19,7 @@ def _read_file(name, encoding='utf-8'):
 setup(
     name='beam',
     version=_read_file('beam/VERSION').strip(),
-    description='A lightweight Python wrapper for the SolusVM client API.',
+    description='A lightweight wrapper for the SolusVM client API.',
     long_description=_read_file('README.rst'),
     license='MIT',
     url='https://github.com/gebn/beam',

@@ -11,28 +11,14 @@ beam
 .. image:: https://coveralls.io/repos/github/gebn/beam/badge.svg?branch=master
    :target: https://coveralls.io/github/gebn/beam?branch=master
 
-A lightweight Python wrapper for the SolusVM client API.
+A lightweight wrapper for the SolusVM client API.
 
 Features
 --------
 
 -  Query a host's memory, bandwidth, IP addresses and storage usage.
 -  Configurable to work with any SolusVM provider.
-
-Demo
-----
-
-.. code:: python
-
-    import beam
-
-    # get a list of hosts using above 90% of their memory
-    hosts = [host for host in beam.hosts()
-             if host.memory.used_percentage > .9]
-
-    # get a list of hosts with less than 10 GiB of storage left
-    hosts = [host for host in beam.hosts()
-             if host.storage.free_bytes < 1024 ** 3 * 10]
+-  Command line client and intuitive Python module for your own scripts.
 
 Setup
 -----
@@ -74,6 +60,54 @@ Each host has its own section. The correct ``key`` and ``hash`` values can be
 optained from the SolusVM control panel used by your vendor. If a host is not
 provided by the default vendor, a ``vendor`` directive specifies the correct
 one.
+
+Usage
+-----
+
+Beam provides both a Python library for programmatic access to your hosts, and
+a simple CLI that wraps it in a couple of lines of code.
+
+CLI
+~~~
+
+The CLI client can be used to find information about a single host.
+
+.. code:: bash
+
+    $ beam --help
+    usage: beam [-h] [-V] host attributes [attributes ...]
+
+    A lightweight Python wrapper for the SolusVM client API.
+
+    positional arguments:
+      host           the identifier of the host whose information to retrieve
+      attributes     one or more attributes of the host to retrieve
+
+    optional arguments:
+      -h, --help     show this help message and exit
+      -V, --version  show program's version number and exit
+    $ beam nyc-1 bandwidth.free_percentage
+    0.4983459835
+    $ beam nyc-1 primary_ip
+    2604:180:2:32b::498b
+    $ beam ams-1 is_online memory.used_bytes
+    True
+    34578234983
+
+Library
+~~~~~~~
+
+.. code:: python
+
+    import beam
+
+    # get a list of hosts using above 90% of their memory
+    hosts = [host for host in beam.hosts()
+             if host.memory.used_percentage > .9]
+
+    # get a list of hosts with less than 10 GiB of storage left
+    hosts = [host for host in beam.hosts()
+             if host.storage.free_bytes < 1024 ** 3 * 10]
 
 Roadmap
 -------
