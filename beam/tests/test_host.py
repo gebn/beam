@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 import unittest
+from mock import patch
 import responses
 
 from beam.resource import Resource
@@ -89,6 +90,29 @@ class TestHost(unittest.TestCase):
                      body=_XML_VALID,
                      status=200):
         responses.add(verb, url, body, status=status)
+
+    def test_action_none(self):
+        with self.assertRaises(ValueError):
+            self.host.action(None)
+
+    def test_action_invalid(self):
+        with self.assertRaises(ValueError):
+            self.host.action('invalid')
+
+    def test_boot(self):
+        with patch.object(Host, 'action') as action:
+            self.host.boot()
+        action.assert_called_once_with('boot')
+
+    def test_reboot(self):
+        with patch.object(Host, 'action') as action:
+            self.host.reboot()
+        action.assert_called_once_with('reboot')
+
+    def test_shutdown(self):
+        with patch.object(Host, 'action') as action:
+            self.host.shutdown()
+        action.assert_called_once_with('shutdown')
 
     @responses.activate
     def test_request_from_identity_denied(self):
