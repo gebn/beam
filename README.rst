@@ -17,6 +17,7 @@ Features
 --------
 
 -  Query a host's memory, bandwidth, IP addresses and storage usage.
+-  Boot, reboot and shutdown machines.
 -  Configurable to work with any SolusVM provider.
 -  Command line client and intuitive Python module for your own scripts.
 
@@ -75,24 +76,32 @@ The CLI client can be used to find information about a single host.
 .. code::
 
     $ beam --help
-    usage: beam [-h] [-V] host attributes [attributes ...]
+    usage: beam [-h] [-V]
+                (-A {boot,reboot,shutdown} | -a ATTRIBUTES [ATTRIBUTES ...])
+                host
 
     A lightweight wrapper for the SolusVM client API.
 
     positional arguments:
-      host           the identifier of the host whose information to retrieve
-      attributes     one or more attributes of the host to retrieve
+      host                  the identifier of the host whose information to
+                            retrieve
 
     optional arguments:
-      -h, --help     show this help message and exit
-      -V, --version  show program's version number and exit
-    $ beam nyc-1 bandwidth.free_percentage
+      -h, --help            show this help message and exit
+      -V, --version         show program's version number and exit
+      -A {boot,reboot,shutdown}, --action {boot,reboot,shutdown}
+                            an action to execute against the host
+      -a ATTRIBUTES [ATTRIBUTES ...], --attributes ATTRIBUTES [ATTRIBUTES ...]
+                            one or more attributes of the host to retrieve
+    $ beam nyc-1 -a bandwidth.free_percentage
     0.4983459835
-    $ beam nyc-1 primary_ip
+    $ beam nyc-1 -a primary_ip
     2604:180:2:32b::498b
-    $ beam ams-1 is_online memory.used_bytes
+    $ beam ams-1 -a is_online memory.used_bytes
     True
     34578234983
+    $ beam nyc-1 -A shutdown
+    OK
 
 Library
 ~~~~~~~
@@ -100,6 +109,14 @@ Library
 .. code:: python
 
     import beam
+
+    # shutdown a specific host
+    host = beam.host('nyc-1')  # name, key or hash
+    if host.is_online:
+        host.shutdown()
+
+    # boot all offline hosts
+    [host.boot() for host in beam.hosts() if not host.is_online]
 
     # get a list of hosts using above 90% of their memory
     hosts = [host for host in beam.hosts()
@@ -112,7 +129,6 @@ Library
 Roadmap
 -------
 
--  Implement ``.boot()``, ``.reboot()`` and ``.shutdown()`` for hosts.
 -  Generate documentation.
 
 Etymology

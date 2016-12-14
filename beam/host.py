@@ -77,7 +77,10 @@ class Host(HostIdentity):
     """
 
     # the relative path to the metadata service
-    _METADATA_ENDPOINT = '/api/client/command.php'
+    _ENDPOINT = '/api/client/command.php'
+
+    # actions that can be carried out against a host
+    VALID_ACTIONS = ['boot', 'reboot', 'shutdown']
 
     @property
     def is_offline(self):
@@ -112,6 +115,50 @@ class Host(HostIdentity):
         self.bandwidth = bandwidth
         self.ip_addresses = ip_addresses
 
+    def action(self, action):
+        """
+        Execute an action against this host by name. If always executing the
+        same action, use `.boot()`, `.reboot()` or `.shutdown()` instead.
+
+        :param action: The name of the action, e.g. 'reboot'.
+        :raises ValueError: If an invalid action is passed.
+        :raises RuntimeError: If the SolusVM API indicates failure.
+        """
+
+        if action not in self.VALID_ACTIONS:
+            raise ValueError('Invalid action: {0}'.format(action))
+
+        data = self.identity.request_params
+        data.update({
+            'action': action,
+            'status': 'true'
+        })
+
+        response = requests.post(
+            self.identity.vendor.endpoint + self._ENDPOINT, data=data)
+        if response.status_code != requests.codes.ok or \
+                '<status>success</status>' not in response.text:
+            raise RuntimeError(
+                'Unable to {0} host: {1}'.format(action, response.text))
+
+    def boot(self):
+        """
+        Start this host.
+        """
+        self.action('boot')
+
+    def reboot(self):
+        """
+        Restart this host.
+        """
+        self.action('reboot')
+
+    def shutdown(self):
+        """
+        Turn off this host.
+        """
+        self.action('shutdown')
+
     @classmethod
     def request_from_identity(cls, identity):
         """
@@ -132,7 +179,7 @@ class Host(HostIdentity):
         })
 
         response = requests.get(
-            identity.vendor.endpoint + cls._METADATA_ENDPOINT, params=params)
+            identity.vendor.endpoint + cls._ENDPOINT, params=params)
         if response.status_code != requests.codes.ok:
             raise RuntimeError(
                 'Unable to retrieve host: {0}'.format(response.text))
