@@ -25,7 +25,7 @@ Setup
 -----
 
 1. Run ``pip install beam`` to download the module.
-2. Create your ``.beam.ini`` inventory file.
+2. Create your ``.beam.ini`` inventory file as below.
 
 Inventory
 ~~~~~~~~~
@@ -130,6 +130,7 @@ Roadmap
 -------
 
 -  Generate documentation.
+-  Increase unit test coverage to 100%, and implement some integration tests.
 
 Etymology
 ---------
