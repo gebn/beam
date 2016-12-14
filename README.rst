@@ -38,7 +38,7 @@ use. Here's a sample file:
 
    [special:vendors]
    ramnode = https://vpscp.ramnode.com
-   fliphost = https://solus.fliphost.net
+   vendor2 = https://vendor2-panel.com
    default = ramnode
 
    [nyc-1]
@@ -48,7 +48,7 @@ use. Here's a sample file:
    [ams-1]
    key = ams-1_host_key
    hash = ams-1_host_hash
-   vendor = fliphost
+   vendor = vendor2
 
 This file defines two hosts, ``nyc-1``, hosted with RamNode, and ``ams-1``,
 hosted with FlipHost. At the top are the vendor names in a special vendors
