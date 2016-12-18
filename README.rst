@@ -78,7 +78,7 @@ The CLI client can be used to find information about a single host.
     $ beam --help
     usage: beam [-h] [-V]
                 (-A {boot,reboot,shutdown} | -a ATTRIBUTES [ATTRIBUTES ...])
-                host
+                [host]
 
     A lightweight wrapper for the SolusVM client API.
 
@@ -93,7 +93,7 @@ The CLI client can be used to find information about a single host.
                             an action to execute against the host
       -a ATTRIBUTES [ATTRIBUTES ...], --attributes ATTRIBUTES [ATTRIBUTES ...]
                             one or more attributes of the host to retrieve
-    $ beam nyc-1 -a bandwidth.free_percentage
+    $ beam -a bandwidth.free_percentage
     0.4983459835
     $ beam nyc-1 -a primary_ip
     2604:180:2:32b::498b

@@ -3,6 +3,7 @@
 from __future__ import unicode_literals, print_function
 import sys
 import argparse
+import socket
 import functools
 
 import beam
@@ -26,6 +27,7 @@ def _parse_args():
                         action='version',
                         version='%(prog)s ' + beam.__version__)
     parser.add_argument('host',
+                        nargs='?', default=socket.gethostname(),
                         help='the identifier of the host whose information to '
                              'retrieve')
     group = parser.add_mutually_exclusive_group(required=True)
