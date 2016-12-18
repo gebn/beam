@@ -19,7 +19,13 @@ def _print_error(msg):
     print(msg, file=sys.stderr)
 
 
-def _parse_args():
+def _parse_args(argv):
+    """
+    Interpret argv.
+
+    :param argv: Command line options and positional arguments.
+    :return: The namespace resulting from a successful parsing.
+    """
     parser = argparse.ArgumentParser(prog='beam',
                                      description='A lightweight wrapper for '
                                                  'the SolusVM client API.')
@@ -37,15 +43,28 @@ def _parse_args():
     group.add_argument('-a', '--attributes',
                        nargs='+',
                        help='one or more attributes of the host to retrieve')
-    return parser.parse_args()
+    return parser.parse_args(argv)
 
 
 def _get_attribute(obj, attribute):
+    """
+    Retrieve an attribute denoted by a dotted string from an object.
+    e.g. `_get_attribute(foo, 'bar.baz')` = `foo.bar.baz`
+
+    :param obj: The object to query.
+    :param attribute: The (possibly nested) attribute to retrieve as a string.
+    :return: The attribute's value.
+    :raises ValueError: If attribute is empty.
+    """
+
+    if not attribute:
+        raise ValueError('An attribute must be specified')
+
     return functools.reduce(getattr, attribute.split('.'), obj)
 
 
 def main():
-    args = _parse_args()
+    args = _parse_args(sys.argv)
     try:
         host = beam.host(args.host)
     except ValueError:
