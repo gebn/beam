@@ -6,7 +6,7 @@ beam
 .. image:: https://img.shields.io/pypi/v/beam.svg
    :target: https://pypi.python.org/pypi/beam
 .. image:: https://img.shields.io/pypi/pyversions/beam.svg
-   :target: #
+   :target: https://pypi.python.org/pypi/beam
 .. image:: https://travis-ci.org/gebn/beam.svg?branch=master
    :target: https://travis-ci.org/gebn/beam
 .. image:: https://coveralls.io/repos/github/gebn/beam/badge.svg?branch=master
