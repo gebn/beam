@@ -12,13 +12,3 @@ script:
 after_success:
  - pip install coveralls
  - coveralls
-deploy:
-  provider: pypi
-  user: gebn
-  password:
-    secure: kMiUJU62vM3ZbeLpfPe+JxtPNCSJVo+TykptpDFmaGhN3gVFRse7tErJuWC1wmq5q6FJ3H1850Go1YOwNJAJMjBNUgYrwtP4ZEW3Y8Ivf92B/IernaNULQjCk+T+klM/oN6Cevqnrx+l6d6RoaOvA5cK2XIQXT0uA20x2iPzNgdaGsk4gCnhXLg5iLGxV/1RYGit6gyg/X3FbPnBZnH5ZIjISBMW6+NSXyoVoDjuj/TlqwCFv2m83/p8ZhRkXOzun+ojAkpDUr4OK7o4jJr0jfgYG/R4+hxjw2rVWpMAOc0crluS7FG5JSsJOvWGICIXvGfP6O+0kVYdM+nZEEmcxWcGVc3CobO0ISnU6dcbyE1VF1aeFqoCZMZdX9ShbC7dncnSDPH0ugLGuwEiWSgnkjDxVV/SuFP0G7Ro5ZbU9fdvY2FKLWNglygLNqVcHCbtOsB6f6jCe28UIIfLigmsZ4pG2/uQiTq10dQF1ZcDqrBvbrBE1Bd+XpiEvAd+GTFs5TKJa5uUS8zy/OhtIkWXytHS7bAqYQX74VLkXChCkXPpgLf+0MgQ9nHhgFEESxiYxhMh8UKZrLyfbhJ2c8P+6pmuIilbU1zG7vIwnn570HTRY4RGkzGYbB7aroaM89ffERDBO8f/Lm5XaRAfwnc+AEpBCzxyMwXmCi7wVE5+2rQ=
-  on:
-    tags: true
-    python: 2.7
-    distributions: sdist bdist_wheel
-    repo: gebn/beam
