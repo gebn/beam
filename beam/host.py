@@ -128,14 +128,14 @@ class Host(HostIdentity):
         if action not in self.VALID_ACTIONS:
             raise ValueError('Invalid action: {0}'.format(action))
 
-        data = self.identity.request_params
+        data = self.request_params
         data.update({
             'action': action,
             'status': 'true'
         })
 
         response = requests.post(
-            self.identity.vendor.endpoint + self._ENDPOINT, data=data)
+            self.vendor.endpoint + self._ENDPOINT, data=data)
         if response.status_code != requests.codes.ok or \
                 '<status>success</status>' not in response.text:
             raise RuntimeError(
