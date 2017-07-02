@@ -1,11 +1,13 @@
 sudo: false
-cache: pip
 language: python
+cache: pip
 python:
- - '2.7'
- - '3.3'
- - '3.4'
- - '3.5'
+ - 2.7
+ - 3.3
+ - 3.4
+ - 3.5
+ - 3.6
+ - 3.7-dev
 script:
  - pip install coverage
  - coverage run setup.py test
