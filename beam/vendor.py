@@ -19,7 +19,9 @@ class Vendor(object):
                          protocol.
         """
         self.name = name
+        """ The vendor's name, e.g. "RamNode". """
         self.endpoint = endpoint
+        """ The hostname of the SolusVM control panel, with protocol. """
 
     def __hash__(self):
         """
