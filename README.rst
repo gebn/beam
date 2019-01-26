@@ -94,14 +94,14 @@ The CLI client can be used to find information about a single host.
                             an action to execute against the host
       -a ATTRIBUTES [ATTRIBUTES ...], --attributes ATTRIBUTES [ATTRIBUTES ...]
                             one or more attributes of the host to retrieve
-    $ beam -a bandwidth.free_percentage
+    $ beam -a bandwidth.free_percentage nyc-1
     0.4983459835
-    $ beam nyc-1 -a primary_ip
+    $ beam -a primary_ip lon-1
     2604:180:2:32b::498b
-    $ beam ams-1 -a is_online memory.used_bytes
+    $ beam -a is_online memory.used_bytes ams-1
     True
     34578234983
-    $ beam nyc-1 -A shutdown
+    $ beam -A shutdown nyc-1
     OK
 
 Library
