@@ -43,7 +43,7 @@ def _parse_args(argv):
     group.add_argument('-a', '--attributes',
                        nargs='+',
                        help='one or more attributes of the host to retrieve')
-    return parser.parse_args(argv)
+    return parser.parse_args(argv[1:])
 
 
 def _get_attribute(obj, attribute):
