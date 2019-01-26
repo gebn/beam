@@ -1,0 +1,19 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+nose = "*"
+mock = "*"
+responses = "*"
+coverage = "*"
+v = {editable = true,version = "*"}
+coveralls = "*"
+
+[packages]
+requests = "*"
+six = ">=1.9.0"
+
+[requires]
+python_version = "3.6"
