@@ -9,6 +9,8 @@ mock = "*"
 responses = "*"
 coverage = "*"
 coveralls = "*"
+wheel = "*"
+twine = "*"
 
 [packages]
 requests = "*"
