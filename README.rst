@@ -7,8 +7,8 @@ beam
    :target: https://pypi.python.org/pypi/beam
 .. image:: https://img.shields.io/pypi/pyversions/beam.svg
    :target: https://pypi.python.org/pypi/beam
-.. image:: https://travis-ci.org/gebn/beam.svg?branch=master
-   :target: https://travis-ci.org/gebn/beam
+.. image:: https://github.com/gebn/beam/actions/workflows/ci.yaml/badge.svg
+   :target: https://github.com/gebn/beam/actions/workflows/ci.yaml
 .. image:: https://coveralls.io/repos/github/gebn/beam/badge.svg?branch=master
    :target: https://coveralls.io/github/gebn/beam?branch=master
 
